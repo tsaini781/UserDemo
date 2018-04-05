@@ -1,0 +1,50 @@
+﻿<!DOCTYPE html>
+<html lang="en" ng-app="UsersApp">
+<head>
+    <meta charset="utf-8" />
+    <title>User App</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.0/css/font-awesome.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.25/angular.min.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.25/angular-route.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular-resource.js"></script>
+
+   
+</head>
+<body ng-controller="mainController">
+
+    <div class="wrapper">
+        <header role="banner">
+            
+            <nav class="navbar navbar-default">
+                <div class="container">
+                    <div class="navbar-header">
+                        <a class="navbar-brand" href="#/">User Application</a>
+                    </div>
+                    <ul class="nav navbar-nav navbar-right">
+                        <li><a href="#/"><i class="fa fa-home"></i> Home</a></li>
+                        <li><a href="#about"><i class="fa fa-shield"></i> About</a></li>
+                        <li><a href="#contact"><i class="fa fa-comment"></i> Contact</a></li>
+                    </ul>
+                </div>
+            </nav>
+        </header>
+        <main class="container">
+            @RenderBody()
+        </main>
+    </div>
+
+    <footer>
+        <div class="container">
+            <span>&copy; @DateTime.Now.Year - UserApp</span>
+        </div>
+    </footer>
+
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @RenderSection("scripts", required: false)
+</body>
+</html>

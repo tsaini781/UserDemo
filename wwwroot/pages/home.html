@@ -1,0 +1,73 @@
+﻿<div class="row">
+    <div class="col-md-6 userList">
+		<div class="row">
+			<div class="col-md-9"><h3><i class="fa fa-user"></i> User List</h3></div>
+			<div class="col-md-3" ><button ng-click="AddUser(user)" class="operationBtn">Add <i class="fa fa-plus"></i></button> </div>
+		</div>
+        <div class="row Gridheader">
+            <div class="col-md-1">Id</div>
+            <div class="col-md-3">Name</div>
+            <div class="col-md-2">Age</div>
+            <div class="col-md-4">Address</div>
+            <div class="col-md-2"></div>
+        </div>
+        <div class="row" ng-repeat="user in Users" ng-class-odd="'odd'" ng-class-even="'even'">
+            <div class="col-md-1">{{user.id}}</div>
+            <div class="col-md-3">{{user.name}}</div>
+            <div class="col-md-2">{{user.age}}</div>
+            <div class="col-md-4">{{user.address}}</div>
+            <div class="col-md-2">
+            <button ng-class-odd="'odd'" ng-class-even="'even'" ng-click="Edit(user)"><i class="fa fa-pencil-square-o"></i></button> 
+            <button ng-class-odd="'odd'" ng-class-even="'even'" ng-click="Delete(user.id)"><i class="fa fa-minus-circle"></i></button></div>
+        </div>
+    </div>
+	
+    <div class="col-md-6">
+        <h3><i class="fa fa-user"></i>{{Operation}} User</h3>
+		<form name="userForm" >
+			<div class="row">
+				<div class="col-md-12">
+					<label>Name</label> 
+				</div>
+				<div class="col-md-12">
+					<input type="text"  name="username"  class="formcontrol" ng-model="User.name"  required  maxlength="50"/>
+				</div>
+			</div>
+			<div class="row">
+			 <div class="col-md-12">
+					<label>Age</label> 
+				</div>
+				<div class="col-md-12">
+					<input type="number" ng-model="User.age" name="age" required maxlength="3" />
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<label>Address</label> 
+				</div>
+				<div class="col-md-12">
+					<input type="text" ng-model="User.address"  name="address" maxlength="50"/>
+				</div>
+			</div>
+			<div class="row"> 
+				<div class="col-md-12">
+					<button ng-click="Cancel()"> {{OperationCancelText}} <i class="fa fa-cancel"></i></button>
+					<button input type="submit" ng-disabled="userForm.$invalid" ng-click="Update()"> {{OperationUpdateText}} <i class="fa fa-user"></i></button>
+					
+				</div>
+			<div>
+			<div class="row">
+				<ul>
+					<li ng-repeat="error in errorMessages" >
+						{{error.errorMessage}}
+					</li>
+				</ul>
+			</div>
+			
+		</form>
+
+    </div>
+
+
+</div>
+
