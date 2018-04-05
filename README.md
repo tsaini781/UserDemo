@@ -13,10 +13,10 @@ Use CDN for Angualr 1
 <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular-resource.js"></script>
 
 Boot strap.
-<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" />
-<link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.0/css/font-awesome.css" />
+//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css
+//netdna.bootstrapcdn.com/font-awesome/4.0.0/css/font-awesome.css
 
-Used System.ComponentModel.DataAnnotations to Validate the Enties.
+Used System.ComponentModel.DataAnnotations to Validate the Entities.
 
 Created a UserList Class to Genrate the temp Data.  
 
