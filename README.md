@@ -20,8 +20,5 @@ Used System.ComponentModel.DataAnnotations to Validate the Enties.
 
 Created a UserList Class to Genrate the temp Data.  
 
-Used Gulp uglify and merge your scripts into a single file.
-
-
-
+Used Gulp uglify and merge your scripts into a single file. Though Command line.
 
