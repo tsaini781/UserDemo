@@ -17,10 +17,10 @@ UsersApp.factory("GetUsers", function ($resource) {
 
 // configure our routes
 UsersApp.config(function ($routeProvider) {
-    $routeProvider
 
+    $routeProvider
         // route for the home page
-        .when('/', {
+        .when('/home/:id', {
             templateUrl: 'pages/home.html',
             controller: 'mainController'
         })
@@ -35,12 +35,12 @@ UsersApp.config(function ($routeProvider) {
         .when('/contact', {
             templateUrl: 'pages/contact.html',
             controller: 'contactController'
-        });
+        })
+        .otherwise({ redirectTo: '/home/new' });
 });
 
 // create the controller and inject Angular's $scope and service 
-UsersApp.controller('mainController', function ($scope, GetUsers) {
-
+UsersApp.controller('mainController', function ($scope, $route, $location, GetUsers) {
     $scope.Delete = function (id) {
         GetUsers.delete({ id: id }, function (data) {
             $scope.loadUsers();
@@ -48,13 +48,8 @@ UsersApp.controller('mainController', function ($scope, GetUsers) {
     }
 
     $scope.Edit = function (user) {
-        $scope.OperationUpdateText = "Update"
-        $scope.OperationCancelText = "Undo"
-        $scope.errorMessages = [];
-        GetUsers.get({ id: user.id }, function (data) {
-            $scope.User = data;
-            $scope.CopyUser = angular.copy(data);
-        });
+        $location.path("/home/" + user.id)
+        $scope.populateUser(user.id)
 
     }
 
@@ -67,11 +62,12 @@ UsersApp.controller('mainController', function ($scope, GetUsers) {
     }
 
     $scope.AddUser = function () {
-        newUser();
+        $location.path("/home/new")
+        $scope.newUser();
     }
     $scope.Cancel = function () {
         if ($scope.User.id === 0) {
-            newUser();
+            $scope.newUser();
         }
         else {
             $scope.User = $scope.CopyUser;
@@ -91,7 +87,26 @@ UsersApp.controller('mainController', function ($scope, GetUsers) {
         $scope.OperationUpdateText = "Save"
         $scope.OperationCancelText = "Reset"
     }
-    $scope.newUser();
+
+    $scope.populateUser = function (userid) {
+        $scope.OperationUpdateText = "Update"
+        $scope.OperationCancelText = "Undo"
+        $scope.errorMessages = [];
+        GetUsers.get({ id: userid }, function (data) {
+            $scope.User = data;
+            $scope.CopyUser = angular.copy(data);
+        });
+    }
+
+    if ($route.current) {
+        if ($route.current.params.id == 'new') {
+            $scope.newUser();
+        }
+        else {
+            $scope.populateUser($route.current.params.id);
+        }
+    }
+
     $scope.loadUsers();
 
 });
